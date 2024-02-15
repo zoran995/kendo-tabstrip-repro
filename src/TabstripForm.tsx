@@ -8,12 +8,20 @@ import {
 } from "@progress/kendo-react-form";
 import { Input } from "@progress/kendo-react-inputs";
 import { TabStrip, TabStripTab } from "@progress/kendo-react-layout";
+import { useState } from "react";
 
 export const TabStripForm: React.FC<{ keepTabsMounted: boolean }> = ({
   keepTabsMounted,
 }) => {
+  const [tab, setTab] = useState(0);
+
   return (
-    <TabStrip animation={false} selected={0} keepTabsMounted={keepTabsMounted}>
+    <TabStrip
+      animation={false}
+      selected={tab}
+      onSelect={(e) => setTab(e.selected)}
+      keepTabsMounted={keepTabsMounted}
+    >
       <TabStripTab title="Test tab">
         <Form
           render={() => (
@@ -67,6 +75,7 @@ export const TabStripForm: React.FC<{ keepTabsMounted: boolean }> = ({
           )}
         />
       </TabStripTab>
+      <TabStripTab title="Test2 tab">test2</TabStripTab>
     </TabStrip>
   );
 };
